@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    container_name: edutest-backend
+    ports:
+      - "5005:3001"
+    volumes:
+      - ./data:/app/data
+    environment:
+      - PORT=3001
+      - JWT_SECRET=production_secret_key_change_this
+      - DB_PATH=/app/data/database.sqlite
+    command: >
+      sh -c "mkdir -p /app/data && if [ ! -f /app/data/database.sqlite ]; then npm run init-db; fi && npm start"
+    networks:
+      - edutest-network
+
+  frontend:
+    build: ./frontend
+    container_name: edutest-frontend
+    ports:
+      - "3005:80"
+    depends_on:
+      - backend
+    networks:
+      - edutest-network
+
+networks:
+  edutest-network:
+    driver: bridge

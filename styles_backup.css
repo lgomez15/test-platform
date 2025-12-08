@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@layer base {
+    body {
+        /* @apply font-sans bg-gray-50 text-gray-900; */
+        /* v4 native way or just standard CSS */
+        font-family: theme('fontFamily.sans');
+        background-color: theme('colors.gray.50');
+        color: theme('colors.gray.900');
+    }
+}
+
+/* Custom Gradients & Utilities */
+.bg-gradient-primary {
+    background: linear-gradient(to right, theme('colors.indigo.600'), theme('colors.purple.600'));
+}
+
+.text-gradient-primary {
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    background-image: linear-gradient(to right, theme('colors.indigo.600'), theme('colors.purple.600'));
+}
+
+.glass-panel {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: theme('boxShadow.xl');
+}
+
+.card-hover {
+    transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+    box-shadow: theme('boxShadow.lg');
+    transform: translateY(-4px);
+}
+
+.input-field {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid theme('colors.gray.200');
+    outline: none;
+    transition: all 0.2s;
+    background-color: theme('colors.gray.50');
+}
+
+.input-field:focus {
+    background-color: white;
+    box-shadow: 0 0 0 2px theme('colors.indigo.500');
+    border-color: transparent;
+}
+
+.btn-primary {
+    background-color: theme('colors.indigo.600');
+    color: white;
+    padding: 0.625rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: all 0.2s;
+    box-shadow: theme('boxShadow.md');
+}
+
+.btn-primary:hover {
+    background-color: theme('colors.indigo.700');
+    box-shadow: theme('boxShadow.lg');
+}
+
+.btn-primary:active {
+    transform: scale(0.95);
+}
+
+.btn-secondary {
+    background-color: white;
+    color: theme('colors.gray.700');
+    border: 1px solid theme('colors.gray.200');
+    padding: 0.625rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: all 0.2s;
+    box-shadow: theme('boxShadow.sm');
+}
+
+.btn-secondary:hover {
+    background-color: theme('colors.gray.50');
+    box-shadow: theme('boxShadow.md');
+}

@@ -1,0 +1,34 @@
+{
+    "questions": [
+        {
+            "pregunta": "What is the capital of France?",
+            "opciones": [
+                "London",
+                "Berlin",
+                "Paris",
+                "Madrid"
+            ],
+            "respuestaCorrecta": "Paris"
+        },
+        {
+            "pregunta": "Which language is used for React?",
+            "opciones": [
+                "Python",
+                "Java",
+                "JavaScript",
+                "C++"
+            ],
+            "respuestaCorrecta": "JavaScript"
+        },
+        {
+            "pregunta": "What is 2 + 2?",
+            "opciones": [
+                "3",
+                "4",
+                "5",
+                "22"
+            ],
+            "respuestaCorrecta": "4"
+        }
+    ]
+}
