@@ -15,7 +15,7 @@ jobs:
 
       - name: Deploy app
         run: |
-          cd /home/debian/proyecto
+          cd /home/debian/test-platform
           git reset --hard
           git pull origin main
           ./run-docker.sh
