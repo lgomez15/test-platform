@@ -58,7 +58,8 @@ router.get('/results', async (req, res) => {
     try {
         const results = await Result.findAll({
             where: { UserId: req.userId },
-            include: { model: Test, attributes: ['title'] }
+            include: { model: Test, attributes: ['title'] },
+            order: [['createdAt', 'DESC']]
         });
         res.json(results);
     } catch (error) {

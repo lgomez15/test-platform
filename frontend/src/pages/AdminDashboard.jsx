@@ -37,8 +37,8 @@ const TabButton = ({ name, label, icon, active, onClick }) => (
     <button
         onClick={() => onClick(name)}
         className={`flex items-center space-x-2 px-5 py-2.5 rounded-lg transition-all duration-200 font-medium text-sm whitespace-nowrap ${active
-                ? 'bg-white text-indigo-600 shadow-md ring-1 ring-gray-100'
-                : 'text-gray-600 hover:bg-white/50 hover:text-gray-900'
+            ? 'bg-white text-indigo-600 shadow-md ring-1 ring-gray-100'
+            : 'text-gray-600 hover:bg-white/50 hover:text-gray-900'
             }`}
     >
         {icon}
@@ -67,6 +67,16 @@ const UserManagement = () => {
             setNewUser({ username: '', password: '', role: 'student' });
             loadUsers();
         } catch (err) { setMessage('Error creating user'); }
+    };
+
+    const handleDelete = async (id) => {
+        if (!window.confirm('Are you sure you want to delete this user?')) return;
+        try {
+            await axios.delete(`/admin/users/${id}`);
+            setMessage('User deleted successfully');
+            setTimeout(() => setMessage(''), 3000);
+            loadUsers();
+        } catch (err) { setMessage('Error deleting user'); }
     };
 
     return (
@@ -106,6 +116,7 @@ const UserManagement = () => {
                                     <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Username</th>
                                     <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Role</th>
                                     <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Status</th>
+                                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Actions</th>
                                 </tr>
                             </thead>
                             <tbody className="bg-white divide-y divide-gray-100">
@@ -119,6 +130,11 @@ const UserManagement = () => {
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             <span className="flex items-center text-green-600"><div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div> Active</span>
+                                        </td>
+                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            <button onClick={() => handleDelete(u.id)} className="text-red-500 hover:text-red-700 bg-red-50 hover:bg-red-100 p-2 rounded-lg transition-colors" title="Delete User">
+                                                <Trash2 size={18} />
+                                            </button>
                                         </td>
                                     </tr>
                                 ))}

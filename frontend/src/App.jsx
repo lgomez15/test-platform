@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Login from './pages/Login';
+import LandingPage from './pages/LandingPage';
 import AdminDashboard from './pages/AdminDashboard';
 import StudentDashboard from './pages/StudentDashboard';
 import Layout from './components/Layout';
@@ -15,7 +16,8 @@ const ProtectedRoute = ({ children, allowedRoles }) => {
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
+      <Route path="/" element={<LandingPage />} />
+      <Route element={<Layout />}>
         <Route path="login" element={<Login />} />
         <Route
           path="admin"
@@ -33,9 +35,9 @@ const AppRoutes = () => {
             </ProtectedRoute>
           }
         />
-        {/* Fallback */}
-        <Route path="*" element={<Navigate to="/login" />} />
       </Route>
+      {/* Fallback */}
+      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
 }
