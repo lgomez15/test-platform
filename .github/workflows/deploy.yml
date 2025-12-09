@@ -20,8 +20,8 @@ jobs:
         username: ${{ secrets.SERVER_USER }}
         key: ${{ secrets.SERVER_SSH_KEY }}
         script: |
-          cd /home/usuario/proyecto
+          cd /home/debian/test-platform
           git reset --hard
           git pull origin main
           docker-compose down
-          docker-compose up -d --build
+          sudo ./run-docker.sh
