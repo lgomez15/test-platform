@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { BookOpen } from 'lucide-react';
@@ -7,8 +7,18 @@ const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const { login } = useAuth();
+    const { login, user } = useAuth();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (user) {
+            if (user.role === 'admin') navigate('/admin', { replace: true });
+            else navigate('/student', { replace: true });
+        }
+    }, [user, navigate]);
+
+    // If user is present, we render nothing (or a spinner) while redirecting
+    if (user) return null;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -24,8 +34,8 @@ const Login = () => {
     };
 
     return (
-        <div className="flex items-center justify-center min-h-[75vh]">
-            <div className="w-full max-w-md bg-white/90 backdrop-blur-xl rounded-2xl shadow-2xl p-10 border border-white/50 relative overflow-hidden">
+        <div className="flex items-center justify-center min-h-[75vh] px-4">
+            <div className="w-full max-w-md bg-white/90 backdrop-blur-xl rounded-2xl shadow-2xl p-6 md:p-10 border border-white/50 relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-2 bg-gradient-primary"></div>
 
                 <div className="flex justify-center mb-8">

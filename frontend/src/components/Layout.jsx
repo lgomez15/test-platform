@@ -16,19 +16,19 @@ const Layout = () => {
             <div className="absolute inset-0 bg-gray-50/95 backdrop-blur-sm z-0"></div>
 
             {/* Header */}
-            <header className="sticky top-0 z-50 glass-panel border-b-0 mb-8 rounded-b-2xl mx-4 mt-2">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 py-4 flex items-center justify-between">
+            <header className="sticky top-0 z-50 glass-panel border-b-0 mb-8 w-full rounded-none mt-0 mx-0 md:rounded-b-2xl md:mx-4 md:mt-2">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
                     <div className="flex items-center space-x-3">
                         <div className="bg-gradient-primary p-2 rounded-lg shadow-lg">
                             <span className="text-white font-bold text-xl tracking-tighter">ET</span>
                         </div>
-                        <div className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-800 to-gray-600">EduTest</div>
+                        <div className="text-xl sm:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-800 to-gray-600">EduTest</div>
                     </div>
                     {user && (
-                        <div className="flex items-center space-x-6">
-                            <div className="flex items-center space-x-3 bg-gray-100/50 px-4 py-2 rounded-full border border-gray-200/50">
+                        <div className="flex items-center space-x-3 sm:space-x-6">
+                            <div className="flex items-center space-x-2 sm:space-x-3 bg-gray-100/50 p-2 sm:px-4 sm:py-2 rounded-full border border-gray-200/50">
                                 <User size={18} className="text-indigo-600" />
-                                <span className="text-sm font-medium text-gray-700">
+                                <span className="text-sm font-medium text-gray-700 hidden sm:inline">
                                     {user.username} <span className="text-xs text-indigo-500 uppercase tracking-wide ml-1 font-bold">{user.role}</span>
                                 </span>
                             </div>
