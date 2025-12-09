@@ -21,7 +21,8 @@ jobs:
         key: ${{ secrets.SERVER_SSH_KEY }}
         script: |
           cd /home/debian/test-platform
-          git reset --hard
-          git pull origin main
-          docker-compose down
-          sudo ./run-docker.sh
+          git fetch --all
+          git reset --hard origin/main
+          git clean -fd
+          ./run-docker.sh
+
